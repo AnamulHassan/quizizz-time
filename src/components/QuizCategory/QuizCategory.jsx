@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import {
   ChevronDoubleRightIcon,
   CheckCircleIcon,
 } from '@heroicons/react/24/solid';
+import { Button } from 'flowbite-react';
+import { Link } from 'react-router-dom';
 
 const QuizItem = ({ quizCategory, handleQuizPractice }) => {
   const { id, logo, name, total } = quizCategory;
@@ -20,7 +21,6 @@ const QuizItem = ({ quizCategory, handleQuizPractice }) => {
           <span> Number of Quiz: {total}</span>
         </h4>
         <Link
-          to="#"
           onClick={() => handleQuizPractice(id)}
           className="w-full mt-5 inline-flex items-center justify-center py-2 px-3 text-lg font-semibold text-white bg-[#ca6551] rounded-lg hover:bg-[#d58474] duration-300 focus:ring-2 focus:outline-none focus:ring-[#653329] dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >

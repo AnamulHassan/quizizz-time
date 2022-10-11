@@ -21,7 +21,6 @@ const Statistics = () => {
     charts.numberOfQuiz = object.total;
     chartData.push(charts);
   });
-  console.log(quizCategoryData[0]);
   return (
     <div className="w-4/5 my-12 mx-auto">
       <h2 className="relative text-6xl z-[10] text-bold text-center my-8 text-[#ca6551]">
