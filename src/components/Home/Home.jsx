@@ -5,7 +5,6 @@ import textBG from '../../assets/images/text-bg.png';
 
 const Home = () => {
   const quizCategoryData = useContext(QuizCategoryContext);
-  console.log(quizCategoryData);
   return (
     <section>
       <div className=" w-11/12 md:w-3/4 mx-auto text-center mt-8 mb-6">
@@ -14,21 +13,27 @@ const Home = () => {
           <span className=" relative text-5xl md:text-6xl font-extrabold text-[#dd392f] z-10">
             how you ask
             <img
-              className="absolute  top-2/4 left-2/4 z-[-10] translate-y-[-50%] translate-x-[-50%]"
+              className="absolute  top-[95%] left-2/4 z-[-10] translate-y-[-50%] translate-x-[-50%]"
               src={textBG}
               alt="text background"
             />
           </span>
         </h2>
-        <p className="text-md md:text-lg font-semibold">
+        <p className="text-lg mt-8 text-[#2c0b09] md:text-lg font-semibold">
           {' '}
-          matters how you ask Assessment, instruction, and practice that
-          motivate every student to mastery
+          Assessment, instruction, and practice that motivate every learner to
+          mastery
+        </p>
+        <p className="text-lg text-[#2c0b09] md:text-lg font-semibold">
+          Help every student show progress, without burning out mentors.
         </p>
       </div>
-      <div className="w-4/5 mx-auto text-center grid grid-col-1 md:grid-cols-2 lg:grid-cols-4 ">
+      <div className="w-4/5 mx-auto text-center grid grid-col-1 md:grid-cols-2 lg:grid-cols-4 gap-5 my-12">
         {quizCategoryData[0].map(quizCategory => (
-          <QuizItem key={quizCategory.id}></QuizItem>
+          <QuizItem
+            key={quizCategory.id}
+            quizCategory={quizCategory}
+          ></QuizItem>
         ))}
       </div>
     </section>

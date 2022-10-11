@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Root from '../Root/Root';
 import Home from '../Home/Home';
-import Quiz from '../Quiz/Quiz';
+import Statistics from '../Statistics/Statistics';
 import About from '../About/About';
 import Blog from '../Blog/Blog';
 import loaderApiData from '../../loaders/loaderApiData';
@@ -13,7 +13,7 @@ const routes = createBrowserRouter([
     children: [
       { path: '/', element: <Home></Home> },
       { path: '/home', element: <Home></Home> },
-      { path: '/quiz', element: <Quiz></Quiz> },
+      { path: '/statistics', element: <Statistics></Statistics> },
       { path: '/about', element: <About></About> },
       { path: '/blog', element: <Blog></Blog> },
     ],
