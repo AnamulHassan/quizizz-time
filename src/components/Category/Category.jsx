@@ -16,7 +16,7 @@ const Category = () => {
             {' '}
             Quickly find or create
             <img
-              className="absolute w-full  top-[85%] left-2/4 z-[-10] translate-y-[-50%] translate-x-[-50%]"
+              className="absolute w-full  top-[85%] left-3/4 md:left-2/4 z-[-10] translate-y-[-50%] translate-x-[-50%]"
               src={underline}
               alt="text background"
             />

@@ -1,35 +1,39 @@
 import React, { useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
+import { EyeIcon } from '@heroicons/react/24/outline';
+import Swal from 'sweetalert2';
 
 const SingleQuiz = ({ questionData, index }) => {
   const { options, id, question, correctAnswer } = questionData;
   const [close, setClose] = useState(true);
   const handleRadioBtn = (event, id) => {
     correctAnswer === event.target.value
-      ? toast.success('Your answer is correct', { autoClose: 500 })
-      : toast.warning('Your answer is incorrect :(', { autoClose: 500 });
-    // console.log(event.target.value);
+      ? toast.success('Answer is correct :)', { autoClose: 500 })
+      : toast.error('Answer is Wrong :(', { autoClose: 500 });
   };
   const handleCorrectAns = () => {
     setClose(!close);
+    Swal.fire(correctAnswer);
   };
   // console.log(clickBtn);
   return (
-    <div className="text-xl border-2 font-semibold border-black mb-5 px-12 py-4 relative">
-      <h2 className="w-4/5 mx-auto text-center text-2xl mb-4">
+    <div className="text-lg md:text-xl rounded-2xl font-semibold bg-[#faf0ee] mb-5 py-10 px-4 md:p-12 relative">
+      <h2 className="md:w-4/5 mx-auto text-center text-[#2c0b09] text-lg md:text-2xl mb-12">
         {' '}
-        <span>Quiz {index}: </span>
+        <span className="font-bold">Quiz {index}: </span>
         {question.startsWith('<p>')
           ? question.replace('<p>', '').replace('</p>', '')
           : question}
       </h2>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {options.map((option, index) => (
-          <div key={index}>
+          <div
+            key={index}
+            className="border-2 border-[#ca6551] p-4 rounded-lg "
+          >
             <input
-              className="w-6 h-6 mr-3 cursor-pointer text-[#ca6551] border-2 focus:outline-none focus:ring focus:ring-[#e5b2a8]"
+              className=" rounded-lg w-6 h-6 mr-3 cursor-pointer text-[#ca6551] border-2 focus:outline-none focus:ring focus:ring-[#e5b2a8]"
               type="radio"
               name="radio-btn"
               value={option}
@@ -43,7 +47,7 @@ const SingleQuiz = ({ questionData, index }) => {
               {option}{' '}
             </label>
             <ToastContainer
-              position="top-center"
+              position="bottom-center"
               hideProgressBar={false}
               newestOnTop={false}
               closeOnClick
@@ -57,11 +61,7 @@ const SingleQuiz = ({ questionData, index }) => {
         ))}
       </div>
       <button className="absolute top-4 right-4" onClick={handleCorrectAns}>
-        {close ? (
-          <EyeIcon className="h-8 w-8 text-black" />
-        ) : (
-          <EyeSlashIcon className="h-8 w-8 text-black" />
-        )}{' '}
+        <EyeIcon className="h-8 w-8 text-[#ca6551]" />
       </button>
     </div>
   );

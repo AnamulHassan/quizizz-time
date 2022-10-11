@@ -24,6 +24,7 @@ const Home = () => {
           Help every learner show progress, without burning out mentors.
         </p>
       </div>
+      <div></div>
     </section>
   );
 };
