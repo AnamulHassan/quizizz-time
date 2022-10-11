@@ -7,10 +7,12 @@ import Blog from '../Blog/Blog';
 import { loaderApiData } from '../../loaders/loaderApiData';
 import Home from '../Home/Home';
 import RenderQuiz from '../RenderQuiz/RenderQuiz';
+import ErrorPage from '../ErrorPage/ErrorPage';
 const routes = createBrowserRouter([
   {
     path: '/',
     element: <Root></Root>,
+    errorElement: <ErrorPage></ErrorPage>,
     loader: loaderApiData,
     children: [
       { path: '/', element: <Home></Home> },
