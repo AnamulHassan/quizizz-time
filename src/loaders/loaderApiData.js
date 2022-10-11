@@ -9,8 +9,7 @@ const loaderApiDataWithId = async id => {
   const initialData = await fetch(
     `https://openapi.programming-hero.com/api/quiz/${id}`
   );
-  const responseData = await initialData.json().then(result => result);
-  const finalData = Promise.resolve(responseData);
+  const finalData = await initialData.json();
   return finalData;
 };
 export { loaderApiData, loaderApiDataWithId };

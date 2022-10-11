@@ -1,15 +1,6 @@
-import React, { useContext } from 'react';
-import QuizItem from '../QuizItem/QuizItem';
-import { QuizCategoryContext } from '../Root/Root';
+import React from 'react';
 import textBG from '../../assets/images/text-bg.png';
-import { loaderApiDataWithId } from '../../loaders/loaderApiData';
-
 const Home = () => {
-  const quizCategoryData = useContext(QuizCategoryContext);
-  const handleQuizPractice = id => {
-    const quizData = loaderApiDataWithId(id);
-    console.log(quizData);
-  };
   return (
     <section>
       <div className=" w-11/12 md:w-3/4 mx-auto text-center mt-8 mb-6">
@@ -32,15 +23,6 @@ const Home = () => {
         <p className="text-lg text-[#2c0b09] md:text-lg font-semibold">
           Help every learner show progress, without burning out mentors.
         </p>
-      </div>
-      <div className="w-10/12 mx-auto text-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6 my-12">
-        {quizCategoryData[0].map(quizCategory => (
-          <QuizItem
-            key={quizCategory.id}
-            quizCategory={quizCategory}
-            handleQuizPractice={handleQuizPractice}
-          ></QuizItem>
-        ))}
       </div>
     </section>
   );
