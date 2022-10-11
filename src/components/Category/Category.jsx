@@ -1,18 +1,13 @@
 import React, { useContext } from 'react';
 import QuizCategory from '../QuizCategory/QuizCategory';
-import { QuizCategoryContext } from '../Root/Root';
+import { QuizCategoryContext, QuizDataContext } from '../Root/Root';
 import underline from '../../assets/images/underline.svg';
 
-import { loaderApiDataWithId } from '../../loaders/loaderApiData';
-import { useNavigate } from 'react-router-dom';
 const Category = () => {
-  const navigate = useNavigate();
   const quizCategoryData = useContext(QuizCategoryContext);
-  const handleQuizPractice = async id => {
-    const quizData = await loaderApiDataWithId(id);
-    const { questions } = quizData.data;
-    navigate(`/quiz/${quizData.data.id}`);
-  };
+  const { handleQuizPractice } = useContext(QuizDataContext);
+
+  // console.log(quizData);
   return (
     <section>
       <div className=" w-11/12 md:w-3/4 mx-auto text-center mt-8 mb-6">

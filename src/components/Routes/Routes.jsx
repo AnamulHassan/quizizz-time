@@ -19,7 +19,7 @@ const routes = createBrowserRouter([
       { path: '/statistics', element: <Statistics></Statistics> },
       { path: '/about', element: <About></About> },
       { path: '/blog', element: <Blog></Blog> },
-      { path: '/quiz', element: <RenderQuiz></RenderQuiz> },
+      { path: '/quiz/:quizId', element: <RenderQuiz></RenderQuiz> },
     ],
   },
 ]);
