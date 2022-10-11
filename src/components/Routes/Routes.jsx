@@ -4,7 +4,7 @@ import Home from '../Home/Home';
 import Statistics from '../Statistics/Statistics';
 import About from '../About/About';
 import Blog from '../Blog/Blog';
-import loaderApiData from '../../loaders/loaderApiData';
+import { loaderApiData } from '../../loaders/loaderApiData';
 const routes = createBrowserRouter([
   {
     path: '/',
