@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { EyeIcon } from '@heroicons/react/24/outline';
 import Swal from 'sweetalert2';
 
-const SingleQuiz = ({ questionData, index }) => {
-  const { options, id, question, correctAnswer } = questionData;
+const SingleQuiz = ({ questionData, index, handleRadioBtn }) => {
+  const { options, question, correctAnswer } = questionData;
   const [close, setClose] = useState(true);
-  const handleRadioBtn = (event, id) => {
-    correctAnswer === event.target.value
-      ? toast.success('Answer is correct :)', { autoClose: 500 })
-      : toast.error('Answer is Wrong :(', { autoClose: 500 });
-  };
+
   const handleCorrectAns = () => {
     setClose(!close);
     Swal.fire(correctAnswer);
@@ -37,7 +33,7 @@ const SingleQuiz = ({ questionData, index }) => {
               type="radio"
               name="radio-btn"
               value={option}
-              onClick={handleRadioBtn}
+              onClick={event => handleRadioBtn(event, correctAnswer)}
               id={`radio${option}`}
             ></input>
             <label

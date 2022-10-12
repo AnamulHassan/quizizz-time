@@ -118,7 +118,7 @@ const Home = () => {
       <div className="w-screen flex justify-center mt-8 mb-12">
         <Link
           to="/category"
-          className="bg-[#dd392f] w-3/5  md:w-1/5 text-center justify-center hover:bg-[#85221c] duration-300 py-2 text-white mt-6 flex items-center rounded-lg text-xl font-bold]"
+          className="bg-[#dd392f] w-3/5  md:w-1/5 text-center justify-center hover:bg-[#85221c] duration-300 py-2 text-white mt-6 flex items-center rounded-lg text-lg md:text-xl font-bold]"
         >
           Explore Another Quiz <ArrowSmallRightIcon className="h-6 w-6 ml-2" />
         </Link>

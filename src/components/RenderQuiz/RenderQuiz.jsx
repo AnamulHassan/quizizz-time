@@ -1,14 +1,55 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { QuizDataContext } from '../Root/Root';
 import SingleQuiz from '../SingleQuiz/SingleQuiz';
 import underline from '../../assets/images/underline1.svg';
 import { Link } from 'react-router-dom';
 import { ArrowSmallRightIcon } from '@heroicons/react/24/solid';
+import ResultSummary from '../ResultSummary/ResultSummary';
+import { storeDataLocal, getStoreDataLocal } from '../../loaders/fakeDB';
+import { toast } from 'react-toastify';
 
 const RenderQuiz = () => {
+  const [correct, setCorrect] = useState([]);
+  const [incorrect, setIncorrect] = useState([]);
+  useEffect(() => {
+    const { correctAnswer, incorrectAnswer } = getStoreDataLocal();
+    setCorrect(correctAnswer);
+    setIncorrect(incorrectAnswer);
+  }, []);
+
+  const handleRadioBtn = (event, correctAnswer) => {
+    const answer =
+      event.target.parentElement.parentNode.previousSibling.firstChild.nextElementSibling.innerText.slice(
+        4,
+        -2
+      );
+    if (correctAnswer === event.target.value) {
+      toast.success('Answer is correct :)', { autoClose: 500 });
+      storeDataLocal('correct-answer', answer);
+      setCorrect(previous => {
+        const exist = previous?.find(num => num === answer);
+        if (exist) {
+          toast.error('Already answered :)', { autoClose: 500 });
+        } else {
+          return [...previous, answer];
+        }
+      });
+    } else {
+      toast.error('Answer is Wrong :(', { autoClose: 500 });
+      storeDataLocal('incorrect-answer', answer);
+      setIncorrect(previous => {
+        const exist = previous?.find(num => num === answer);
+        if (exist) {
+          toast.error('Already answered :)', { autoClose: 500 });
+        } else {
+          return [...previous, answer];
+        }
+      });
+    }
+  };
   const { questionsData } = useContext(QuizDataContext);
   return (
-    <section className="w-11/12 mx-auto grid grid-cols-7 my-6">
+    <section className="w-11/12 mx-auto grid grid-cols-7 gap-6 my-6">
       <div className="col-span-7 md:col-span-5">
         {questionsData.name && (
           <h2 className="relative text-6xl z-[10] text-bold text-center my-8 text-[#ca6551]">
@@ -27,6 +68,7 @@ const RenderQuiz = () => {
               key={question.id}
               questionData={question}
               quizCategoryName={questionsData.name}
+              handleRadioBtn={handleRadioBtn}
             ></SingleQuiz>
           ))}
         {questionsData.questions && (
@@ -41,7 +83,14 @@ const RenderQuiz = () => {
           </div>
         )}
       </div>
-      <div className="col-span-7 md:col-span-2"></div>
+      <div className="col-span-7 md:col-span-2">
+        {questionsData.questions && (
+          <ResultSummary
+            correct={correct}
+            incorrect={incorrect}
+          ></ResultSummary>
+        )}
+      </div>
     </section>
   );
 };

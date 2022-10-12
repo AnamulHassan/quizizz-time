@@ -23,7 +23,7 @@ const Statistics = () => {
   });
   return (
     <div className="w-4/5 my-12 mx-auto">
-      <h2 className="relative text-6xl z-[10] text-bold text-center my-8 text-[#ca6551]">
+      <h2 className="relative text-4xl md:text-6xl z-[10] text-bold text-center my-8 text-[#ca6551]">
         Quiz Information
         <img
           className="absolute top-[100%] z-[-10]  left-2/4 translate-y-[-50%] translate-x-[-50%]"
