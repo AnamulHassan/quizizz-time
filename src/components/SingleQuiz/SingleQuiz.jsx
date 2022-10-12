@@ -12,7 +12,6 @@ const SingleQuiz = ({ questionData, index, handleRadioBtn }) => {
     setClose(!close);
     Swal.fire(correctAnswer);
   };
-  // console.log(clickBtn);
   return (
     <div className="text-lg md:text-xl rounded-2xl font-semibold bg-[#faf0ee] mb-5 py-10 px-4 md:p-12 relative">
       <h2 className="md:w-4/5 mx-auto text-center text-[#2c0b09] text-lg md:text-2xl mb-12">

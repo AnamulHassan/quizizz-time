@@ -54,7 +54,6 @@ const RenderQuiz = () => {
     setCorrect([]);
     setIncorrect([]);
     Swal.fire('Congratulation!', 'Yoy finished the quiz!', 'success');
-    console.log('clc');
   };
   const { questionsData } = useContext(QuizDataContext);
   return (

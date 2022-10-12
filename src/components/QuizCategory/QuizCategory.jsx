@@ -3,7 +3,6 @@ import {
   ChevronDoubleRightIcon,
   CheckCircleIcon,
 } from '@heroicons/react/24/solid';
-import { Button } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 
 const QuizItem = ({ quizCategory, handleQuizPractice }) => {

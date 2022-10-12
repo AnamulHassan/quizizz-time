@@ -5,7 +5,6 @@ import { ArrowSmallRightIcon } from '@heroicons/react/24/solid';
 
 const ErrorPage = () => {
   const { status, statusText } = useRouteError();
-  console.log(statusText);
   return (
     <section className="w-screen h-screen flex items-center justify-center">
       <div className="flex flex-col items-center justify-center">
