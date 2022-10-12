@@ -11,8 +11,12 @@ const storeDataLocal = (name, number) => {
 };
 
 const getStoreDataLocal = () => {
-  const correctAnswer = JSON.parse(localStorage.getItem('correct-answer'));
-  const incorrectAnswer = JSON.parse(localStorage.getItem('incorrect-answer'));
-  return { correctAnswer, incorrectAnswer };
+  const correctAnswers = JSON.parse(localStorage.getItem('correct-answer'));
+  const incorrectAnswers = JSON.parse(localStorage.getItem('incorrect-answer'));
+  return { correctAnswers, incorrectAnswers };
 };
-export { storeDataLocal, getStoreDataLocal };
+const removeStoreDataLocal = () => {
+  localStorage.removeItem('correct-answer');
+  localStorage.removeItem('incorrect-answer');
+};
+export { storeDataLocal, getStoreDataLocal, removeStoreDataLocal };

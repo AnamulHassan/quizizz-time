@@ -5,18 +5,22 @@ import underline from '../../assets/images/underline1.svg';
 import { Link } from 'react-router-dom';
 import { ArrowSmallRightIcon } from '@heroicons/react/24/solid';
 import ResultSummary from '../ResultSummary/ResultSummary';
-import { storeDataLocal, getStoreDataLocal } from '../../loaders/fakeDB';
+import {
+  storeDataLocal,
+  getStoreDataLocal,
+  removeStoreDataLocal,
+} from '../../loaders/fakeDB';
 import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
 const RenderQuiz = () => {
   const [correct, setCorrect] = useState([]);
   const [incorrect, setIncorrect] = useState([]);
   useEffect(() => {
-    const { correctAnswer, incorrectAnswer } = getStoreDataLocal();
-    setCorrect(correctAnswer);
-    setIncorrect(incorrectAnswer);
+    const { correctAnswers, incorrectAnswers } = getStoreDataLocal();
+    setCorrect(correctAnswers);
+    setIncorrect(incorrectAnswers);
   }, []);
-
   const handleRadioBtn = (event, correctAnswer) => {
     const answer =
       event.target.parentElement.parentNode.previousSibling.firstChild.nextElementSibling.innerText.slice(
@@ -24,28 +28,33 @@ const RenderQuiz = () => {
         -2
       );
     if (correctAnswer === event.target.value) {
-      toast.success('Answer is correct :)', { autoClose: 500 });
-      storeDataLocal('correct-answer', answer);
-      setCorrect(previous => {
-        const exist = previous?.find(num => num === answer);
-        if (exist) {
-          toast.error('Already answered :)', { autoClose: 500 });
-        } else {
-          return [...previous, answer];
-        }
-      });
+      if (correct) {
+        setCorrect(previous => [...previous, answer]);
+        toast.success('Answer is correct :)', { autoClose: 500 });
+        storeDataLocal('correct-answer', answer);
+      } else {
+        setCorrect([answer]);
+        toast.success('Answer is correct :)', { autoClose: 500 });
+        storeDataLocal('correct-answer', answer);
+      }
     } else {
-      toast.error('Answer is Wrong :(', { autoClose: 500 });
-      storeDataLocal('incorrect-answer', answer);
-      setIncorrect(previous => {
-        const exist = previous?.find(num => num === answer);
-        if (exist) {
-          toast.error('Already answered :)', { autoClose: 500 });
-        } else {
-          return [...previous, answer];
-        }
-      });
+      if (incorrect) {
+        setIncorrect(previous => [...previous, answer]);
+        toast.error('Answer is Wrong :(', { autoClose: 500 });
+        storeDataLocal('incorrect-answer', answer);
+      } else {
+        setIncorrect([answer]);
+        toast.error('Answer is Wrong :(', { autoClose: 500 });
+        storeDataLocal('incorrect-answer', answer);
+      }
     }
+  };
+  const handleClearSummary = () => {
+    removeStoreDataLocal();
+    setCorrect([]);
+    setIncorrect([]);
+    Swal.fire('Congratulation!', 'Yoy finished the quiz!', 'success');
+    console.log('clc');
   };
   const { questionsData } = useContext(QuizDataContext);
   return (
@@ -72,13 +81,12 @@ const RenderQuiz = () => {
             ></SingleQuiz>
           ))}
         {questionsData.questions && (
-          <div className="w-full flex justify-center">
+          <div className="w-full  justify-center hidden md:flex">
             <Link
-              to="/category"
-              className="bg-[#dd392f] w-4/5  md:w-2/5 text-center justify-center hover:bg-[#85221c] duration-300 py-2 text-white mt-6 flex items-center rounded-lg text-xl font-bold]"
+              to="/home"
+              className="bg-[#dd392f]   hover:bg-[#85221c] duration-300 py-2 text-white mt-6 flex px-6 items-center rounded-lg text-xl font-bold]"
             >
-              Explore Another Quiz{' '}
-              <ArrowSmallRightIcon className="h-6 w-6 ml-2" />
+              Back to Home <ArrowSmallRightIcon className="h-6 w-6 ml-2" />
             </Link>
           </div>
         )}
@@ -88,6 +96,8 @@ const RenderQuiz = () => {
           <ResultSummary
             correct={correct}
             incorrect={incorrect}
+            questionLength={questionsData.questions}
+            handleClearSummary={handleClearSummary}
           ></ResultSummary>
         )}
       </div>
