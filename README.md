@@ -6,7 +6,7 @@ Project Live Link [Click here to go live site](https://project-quizizz-time.netl
 
 ## `About Project`
 
-I made this project for our assignment 9. Making this project I followed a bunch of strategy to finish the project. I going to note down those strategy here step by step. This project is sort of taking quiz related single page web application create with React. This project has some navigation bars and a statistics about the quiz information also a blog section with some question.
+I made this project for our assignment 9. Making this project I followed a bunch of strategy to finish the project. I'm going to note down those strategy here step by step. This project is sort of taking quiz related single page web application create with React. This project has some navigation bars and a statistics about the quiz information also a blog section with some question.
 
 ### `Strategy to complete the project`
 
@@ -18,6 +18,6 @@ I made this project for our assignment 9. Making this project I followed a bunch
 
 ### 4. This application has another important component that is Statistics component. It will help to know easily the information of all quiz topic and there will also shown the quiz topic and the number of quiz.
 
-### 5. Like all the other application, this application has About component that will provide a few basic information of our goal and how to maintain all this thing.
+### 5. Like all the other application, this application has About component that will provide a few basic information of our goal and how to maintain all this things.
 
 ### 6. At the end, I added a Blog component to answer some basic React questions.
